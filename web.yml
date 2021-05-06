@@ -1,0 +1,19 @@
+---
+- name : deploy web app on server
+- hosts : web
+  gather_facts : false
+  tasks:
+- name : check if server is running or not
+  ping:
+- name : install git
+  shell : apt install git –y
+- name : installdocker
+  shell : apt install docker.io –y
+- name : clone the docker repository
+
+  shell : git clone https://github.com/itishree-mohapatra/Dockerfile.git
+- name : build image
+  shell : docker build –t image1 /root/Dockerfile/.
+
+- name : create container and deploy the application
+  shell : docker run –d –p 9001:9001 –name helloapp image1
